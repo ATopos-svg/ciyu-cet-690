@@ -1,5 +1,5 @@
-const SHELL='ciyu-shell-v1.0.1',AUDIO='ciyu-audio-v1';
-const assets=['./','index.html','styles.css','app.js','words.js','manifest.webmanifest','icon.svg','icon-192.png','icon-512.png'];
+const SHELL='ciyu-shell-v1.0.2',AUDIO='ciyu-audio-v1';
+const assets=['./','index.html','styles.css','study-time.js','app.js','words.js','manifest.webmanifest','icon.svg','icon-192.png','icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(SHELL).then(cache=>cache.addAll(assets)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('ciyu-')&&![SHELL,AUDIO].includes(k)).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 function partial(response,range){return response.arrayBuffer().then(buffer=>{const m=/^bytes=(\d*)-(\d*)$/.exec(range);if(!m)return new Response(null,{status:416});let start=m[1]?Number(m[1]):Math.max(0,buffer.byteLength-Number(m[2])),end=m[1]?(m[2]?Number(m[2]):buffer.byteLength-1):buffer.byteLength-1;end=Math.min(end,buffer.byteLength-1);if(start>end||start>=buffer.byteLength)return new Response(null,{status:416,headers:{'Content-Range':`bytes */${buffer.byteLength}`}});return new Response(buffer.slice(start,end+1),{status:206,headers:{'Content-Type':'audio/mpeg','Content-Range':`bytes ${start}-${end}/${buffer.byteLength}`,'Accept-Ranges':'bytes','Content-Length':String(end-start+1)}})})}
