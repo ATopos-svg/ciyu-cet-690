@@ -3,7 +3,7 @@ window.ciyuMedia=(()=>{
   const index=window.CIYU_AUDIO_INDEX||{};
   const pending=new Map(), recent=new Map();
   const href=p=>new URL(p,document.baseURI).href;
-  const pack=i=>href('media-pack/v110-'+i+'.bin');
+  const pack=i=>href('media-pack/'+(typeof i==='number'?'v110-'+i:i)+'.bin');
   const downloads=assets=>[...new Set(assets.map(a=>index[a]?pack(index[a][0]):href(a)))];
   async function contents(url){
     if(recent.has(url)){const found=recent.get(url);recent.delete(url);recent.set(url,found);return found;}

@@ -69,4 +69,4 @@ python -m http.server 8765 --directory .
 
 - 第三轮新增释义、部分搭配和音标来自 [ECDICT](https://github.com/skywind3000/ECDICT)，[MIT 许可](ECDICT-LICENSE.txt)。部分构词与搭配经过补写。
 - 例句为自编，或选自 [Tatoeba](https://tatoeba.org/en/downloads) 的双语语料（经 [ManyThings](https://www.manythings.org/anki/) 整理，[CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/)）。例句旁附原始句子编号及贡献者。内置音频为重新生成的合成语音。
-- 新增单词、派生词和例句以 eSpeak NG 美式合成语音生成。APK 的单词和例句均可离线播放。
+- 新增单词与派生词的发音沿用 eSpeak NG。1.1.2 起，所有例句采用 [Piper 的 LJSpeech 美式英语语音](https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/high/MODEL_CARD)重新生成。APK 内置新版例句音频；网页端如需离线播放新版例句，请在联网时重新下载离线发音。
